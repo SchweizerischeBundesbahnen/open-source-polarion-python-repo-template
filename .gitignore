@@ -30,11 +30,6 @@ replay_pid*
 !.idea/codeStyles/Project.xml
 !.idea/codeStyles/codeStyleConfig.xml
 
-.vscode/*
-
 target/
 *.iml
 dependency-reduced-pom.xml
-
-src/main/resources/webapp/*-admin/html/about.html
-README.html

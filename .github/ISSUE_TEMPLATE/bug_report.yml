@@ -30,24 +30,6 @@ body:
         4. See error...
     validations:
       required: true
-  - type: input
-    attributes:
-      label: Environment - OS
-      description: Linux or Windows
-    validations:
-      required: true
-  - type: input
-    attributes:
-      label: Polarion version
-      description: 2310, 2404, etc...
-    validations:
-      required: true
-  - type: input
-    attributes:
-      label: Extension Version
-      description: It can be found under https://<<host>>/polarion/#/project/dev/administration/<<Extension Name>>/About
-    validations:
-      required: true
   - type: textarea
     attributes:
       label: Anything else
