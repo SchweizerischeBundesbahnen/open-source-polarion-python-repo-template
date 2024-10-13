@@ -1,0 +1,78 @@
+---
+name: poetry-build
+on:
+  push:
+    branches: ['**/**']
+jobs:
+  verify-with-tox:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📄 Checkout code
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871  # v4
+        with:
+          fetch-depth: 0
+      - name: 🧱 Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+      - name: 🧱 Setup Python
+        uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3  # v5
+        with:
+          python-version: '3.12'
+          cache: poetry
+      - name: 🧱 Install dependencies
+        run: poetry install
+      - name: Run tests
+        run: poetry run tox
+  release-please:
+    needs: verify-with-tox
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: release-please
+        id: release
+        uses: googleapis/release-please-action@db8f2c60ee802b3748b512940dde88eabd7b7e01  # v3
+        with:
+          release-type: python
+          include-v-in-tag: false
+    outputs:
+      release_created: ${{ steps.release.outputs.releases_created }}
+      version: ${{ steps.release.outputs.version }}
+  build-and-publish:
+    needs: release-please
+    runs-on: ubuntu-latest
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    permissions:
+#      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing for PyPI
+      contents: write  # Required for uploading artifacts to GitHub release
+    steps:
+      - name: 📄 Checkout code
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871  # v4
+        with:
+          fetch-depth: 0
+      - name: 🧱 Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+      - name: 🧱 Setup Python
+        uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3  # v5
+        with:
+          python-version: '3.12'
+          cache: poetry
+      - name: 🧱 Install dependencies
+        run: poetry install
+      - name: 📦 Build the package
+        run: poetry build
+      - name: 📦 Publish artifacts to GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ needs.release-please.outputs.version }}" dist/*.{tar.gz,whl}
+#      - name: 📦 Publish artifacts to PyPI/TestPyPI
+#        env:
+#          name: testpypi
+#          url: https://test.pypi.org/p/python-requirements-inspector
+#          name: pypi
+#          url: https://pypi.org/p/python-requirements-inspector
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          repository-url: https://test.pypi.org/legacy/  # it must be removed when publishing to PyPI
+#          verbose: true
