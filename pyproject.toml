@@ -48,11 +48,6 @@ extend-select = [
     "T20",    # flake8-print
     "ERA",    # eradicate
 ]
-
-[tool.ruff.lint.per-file-ignores]
-"polarion_requirements_inspector/main.py" = [
-    "T201" # No prints
-]
 "tests/*" = [
     "S101" # No assert rule (bandit)
 ]
