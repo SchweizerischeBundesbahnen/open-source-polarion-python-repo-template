@@ -21,6 +21,19 @@ repos:
       - id: end-of-file-fixer
   - repo: local
     hooks:
+      - id: sensitive-data-leak-urls
+        name: Sensitive data leak - URLs
+        entry: sbb\.ch\b
+        language: pygrep
+        types: [text]
+        exclude: \b(www\.|polarion-opensource@)sbb\.ch\b
+      - id: sensitive-data-leak-ue-numbers
+        name: Sensitive data leak - UE numbers
+        entry: ([uUeE]{1,2})\d{5,6}
+        language: pygrep
+        types: [text]
+  - repo: local
+    hooks:
       - id: mypy
         name: mypy
         entry: poetry run mypy
@@ -52,10 +65,3 @@ repos:
     rev: v3.29.1
     hooks:
       - id: commitizen
-  - repo: local
-    hooks:
-      - id: sensitive-data-leak
-        name: Sensitive data leak hook
-        entry: (?<!polarion-opensource@)sbb\.ch
-        language: pygrep
-        types: [text]
