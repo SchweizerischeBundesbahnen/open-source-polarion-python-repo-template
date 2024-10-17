@@ -48,6 +48,8 @@ extend-select = [
     "T20",    # flake8-print
     "ERA",    # eradicate
 ]
+
+[tool.ruff.lint.per-file-ignores]
 "tests/*" = [
     "S101" # No assert rule (bandit)
 ]
