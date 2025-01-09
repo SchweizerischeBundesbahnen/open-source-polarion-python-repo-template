@@ -1,28 +1,32 @@
-[tool.poetry]
+[project]
 name = "open-source-polarion-python-repo-template"
 version = "0.1.0"
 description = ""
 authors = [
-    "SBB Polarion Team <polarion-opensource@sbb.ch>",
+    { name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch" },
 ]
-license = "Apache License 2.0"
+license = { text = "Apache-2.0" }
 readme = "README.md"
+requires-python = ">=3.13"
 homepage = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
 repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
 
-[tool.poetry.dependencies]
-python = "^3.12"
+dependencies = [
+    "httpx>=0.28.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^4.0.0"
-ruff = "^0.9.0"
-mypy = "^1.11.2"
-
-[tool.poetry.group.test.dependencies]
-tox = "^4.12.1"
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=4.0.0,<5.0.0",
+    "ruff>=0.9.0,<0.10.0",
+    "mypy>=1.11.2,<2.0.0",
+]
+test = [
+    "tox>=4.12.1,<5.0.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
