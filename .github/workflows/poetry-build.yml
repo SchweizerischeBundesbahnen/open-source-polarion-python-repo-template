@@ -56,7 +56,7 @@ jobs:
     steps:
       - name: 🚀 release-please
         id: release
-        uses: googleapis/release-please-action@db8f2c60ee802b3748b512940dde88eabd7b7e01  # v3
+        uses: googleapis/release-please-action@db8f2c60ee802b3748b512940dde88eabd7b7e01  # v3.7.13
         with:
           release-type: python
           include-v-in-tag: false
@@ -96,7 +96,7 @@ jobs:
 #          url: https://test.pypi.org/p/python-requirements-inspector
 #          name: pypi
 #          url: https://pypi.org/p/python-requirements-inspector
-#        uses: pypa/gh-action-pypi-publish@release/v1
+#        uses: pypa/gh-action-pypi-publish@release/v1.12.3
 #        with:
 #          repository-url: https://test.pypi.org/legacy/  # it must be removed when publishing to PyPI
 #          verbose: true
