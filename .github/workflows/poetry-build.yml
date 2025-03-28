@@ -18,7 +18,7 @@ jobs:
       - name: 🧱 Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: 🧱 Setup Python
-        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55  # v5.5.0
         with:
           python-version: '3.13'
           cache: poetry
@@ -34,8 +34,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: |
-            -Dsonar.pullrequest.base=${{ github.base_ref }}
-            -Dsonar.pullrequest.branch=${{ github.head_ref }}
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
       - name: SonarCloud scan for Push
         uses: sonarsource/sonarqube-scan-action@aa494459d7c39c106cc77b166de8b4250a32bb97  # v5.1.0
@@ -78,7 +76,7 @@ jobs:
       - name: 🧱 Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: 🧱 Setup Python
-        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38  # v5.4.0
+        uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55  # v5.5.0
         with:
           python-version: '3.13'
           cache: poetry
