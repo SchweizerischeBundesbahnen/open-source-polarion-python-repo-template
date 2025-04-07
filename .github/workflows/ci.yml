@@ -59,12 +59,12 @@ jobs:
     steps:
       - name: 🚀 release-please
         id: release
-        uses: googleapis/release-please-action@db8f2c60ee802b3748b512940dde88eabd7b7e01  # v3.7.13
+        uses: googleapis/release-please-action@a02a34c4d625f9be7cb89156071d8567266a2445  # v4.2.0
         with:
           release-type: python
           include-v-in-tag: false
     outputs:
-      release_created: ${{ steps.release.outputs.releases_created }}
+      release_created: ${{ steps.release.outputs.release_created }}
       version: ${{ steps.release.outputs.version }}
   build-and-publish:
     needs: release-please
