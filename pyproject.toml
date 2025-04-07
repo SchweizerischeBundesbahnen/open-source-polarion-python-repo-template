@@ -1,6 +1,6 @@
 [project]
 name = "open-source-polarion-python-repo-template"
-version = "0.1.0"
+version = "0.0.0"  # the version is controll by the pipeline
 description = ""
 authors = [
     { name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch" },

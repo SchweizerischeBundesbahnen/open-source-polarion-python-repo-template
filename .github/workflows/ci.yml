@@ -1,5 +1,5 @@
 ---
-name: poetry-build
+name: Build & Release
 on:
   push:
     branches: ['**']
@@ -10,11 +10,15 @@ on:
 jobs:
   verify-with-tox:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: 📄 Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          persist-credentials: false
       - name: 🧱 Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: 🧱 Setup Python
@@ -47,10 +51,11 @@ jobs:
   release-please:
     needs: verify-with-tox
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref_name == 'main'
     permissions:
       contents: write
       pull-requests: write
+      issues: write
     steps:
       - name: 🚀 release-please
         id: release
@@ -72,7 +77,8 @@ jobs:
       - name: 📄 Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          persist-credentials: false
       - name: 🧱 Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
       - name: 🧱 Setup Python
