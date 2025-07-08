@@ -7,10 +7,9 @@ authors = [
 ]
 license = { text = "Apache-2.0" }
 readme = "README.md"
-requires-python = ">=3.13"
 homepage = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
 repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
-
+requires-python = ">=3.13"
 dependencies = [
     "httpx==0.28.1",
 ]
@@ -28,7 +27,7 @@ test = [
 ]
 
 [build-system]
-requires = ["poetry-core==2.1.3"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
