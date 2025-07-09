@@ -10,24 +10,21 @@ readme = "README.md"
 homepage = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
 repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
 requires-python = ">=3.13"
-dependencies = [
-    "httpx==0.28.1",
-]
+[tool.poetry.dependencies]
+httpx = "0.28.1"
 
-[project.optional-dependencies]
-dev = [
-    "pre-commit==4.2.0",
-    "ruff==0.12.2",
-    "mypy==1.16.1",
-]
-test = [
-    "tox==4.27.0",
-    "pytest==8.4.1",
-    "coverage==7.9.2",
-]
+[tool.poetry.group.dev.dependencies]
+pre-commit = "4.2.0"
+ruff = "0.12.2"
+mypy = "1.16.1"
+
+[tool.poetry.group.test.dependencies]
+tox = "4.12.1"
+pytest = "8.4.1"
+coverage = "7.9.2"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]

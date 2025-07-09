@@ -2,8 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>SchweizerischeBundesbahnen/casc-renovate-preset-polarion-python"
-  ],
-  "lockFileMaintenance": {
-    "enabled": true
-  }
+  ]
 }
