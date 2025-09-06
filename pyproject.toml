@@ -20,7 +20,7 @@ mypy = "1.17.1"
 
 [tool.poetry.group.test.dependencies]
 tox = "4.29.0"
-pytest = "8.4.1"
+pytest = "8.4.2"
 coverage = "7.10.6"
 
 [build-system]
