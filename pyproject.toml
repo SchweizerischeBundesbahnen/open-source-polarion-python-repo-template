@@ -21,7 +21,7 @@ mypy = "1.18.2"
 [tool.poetry.group.test.dependencies]
 tox = "4.32.0"
 pytest = "8.4.2"
-coverage = "7.11.1"
+coverage = "7.11.2"
 
 [build-system]
 requires = ["poetry-core"]
