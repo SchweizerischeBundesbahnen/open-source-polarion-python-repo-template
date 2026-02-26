@@ -19,7 +19,7 @@ ruff = "0.15.2"
 mypy = "1.19.1"
 
 [tool.poetry.group.test.dependencies]
-tox = "4.44.0"
+tox = "4.45.0"
 pytest = "9.0.2"
 coverage = "7.13.4"
 
