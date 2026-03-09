@@ -5,27 +5,38 @@ description = ""
 authors = [
     { name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch" },
 ]
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
-repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
-requires-python = ">=3.13"
-[tool.poetry.dependencies]
-httpx = "0.28.1"
+requires-python = ">=3.13,<3.14"
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "4.5.1"
-ruff = "0.15.5"
-mypy = "1.19.1"
+dependencies = [
+    "httpx==0.28.1",
+]
 
-[tool.poetry.group.test.dependencies]
-tox = "4.48.0"
-pytest = "9.0.2"
-coverage = "7.13.4"
+[project.urls]
+Homepage = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
+Repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion-python-repo-template"
+
+[dependency-groups]
+dev = [
+    "pre-commit==4.5.1",
+    "ruff==0.15.5",
+    "mypy==1.19.1",
+]
+
+test = [
+    "tox==4.48.0",
+    "pytest==9.0.2",
+    "coverage==7.13.4",
+]
+
+[tool.uv]
+# Set to true because this project is a library, not an application
+package = true
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 240
@@ -63,3 +74,11 @@ line-ending = "lf"
 explicit_package_bases = true
 disallow_untyped_defs = true
 exclude = "tests/.*"
+install_types = true
+non_interactive = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
