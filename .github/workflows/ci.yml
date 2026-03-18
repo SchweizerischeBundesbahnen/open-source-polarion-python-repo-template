@@ -11,7 +11,7 @@ jobs:
   verify-with-tox:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       pull-requests: write  # Required for SonarCloud to comment on PRs and update status
     steps:
       - name: 📄 Checkout code
