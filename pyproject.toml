@@ -3,7 +3,7 @@ name = "open-source-polarion-python-repo-template"
 version = "0.0.0"  # the version is controlled by the pipeline
 description = ""
 authors = [
-    { name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch" },
+    {name = "SBB Polarion Team", email = "polarion-opensource@sbb.ch"},
 ]
 license = "Apache-2.0"
 readme = "README.md"
