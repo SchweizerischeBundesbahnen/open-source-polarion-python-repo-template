@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
+      pull-requests: write  # Required for SonarCloud to comment on PRs and update status
     steps:
       - name: 📄 Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
-          fetch-depth: 1
           persist-credentials: false
+          fetch-depth: 0  # Full history required for SonarCloud analysis
       - name: Set up Python from .tool-versions
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
         with:
@@ -50,25 +50,16 @@ jobs:
           args: |
             -Dsonar.branch.name=${{ github.head_ref }}
   release-please:
-    needs: verify-with-tox
-    runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' && github.ref_name == 'main'
+    uses: SchweizerischeBundesbahnen/github-workflows-polarion/.github/workflows/reusable-release-please.yml@main
     permissions:
       contents: write
       pull-requests: write
-      issues: write
-    steps:
-      - name: 🚀 release-please
-        id: release
-        uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38  # v4.4.0
-        with:
-          release-type: python
-          include-v-in-tag: false
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      version: ${{ steps.release.outputs.version }}
+    with:
+      release-type: python
+      include-v-in-tag: false
   build-and-publish:
-    needs: release-please
+    needs: [verify-with-tox, release-please]
     runs-on: ubuntu-latest
     if: ${{ needs.release-please.outputs.release_created == 'true' }}
     permissions:
@@ -95,7 +86,7 @@ jobs:
       - name: 📦 Publish artifacts to GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_VERSION: needs.release-please.outputs.version
+          RELEASE_VERSION: ${{ needs.release-please.outputs.version }}
         run: gh release upload "${RELEASE_VERSION}" dist/*.{tar.gz,whl}
 #      - name: 📦 Publish artifacts to PyPI/TestPyPI
 #        env:
