@@ -45,22 +45,12 @@ fix = true
 show-fixes = true
 
 [tool.ruff.lint]
-extend-select = [
-    # --- Recommended ---
-    "E", "W", # pycodestyle errors and warnings
-    "F",      # Pyflakes
-    "I",      # isort
-    "C4",     # flake8-comprehensions
-    "C90",    # mccabe
-    "B",      # flake8-bugbear
-    "UP",     # pyupgrade
-    "S",      # flake8-bandit
-    "PL",     # Pylint
-    "PTH",    # flake8-pathlib
-    "TCH",    # type-checking imports
-    "SIM",    # flake8-simplify
-    "T20",    # flake8-print
-    "ERA",    # eradicate
+select = ["ALL"]
+ignore = [
+    "D",      # pydocstyle — enable when docstring conventions are established
+    "ANN",    # flake8-annotations — mypy handles type checking
+    "COM",    # flake8-commas — formatter handles trailing commas
+    "ISC",    # flake8-implicit-str-concat — conflicts with formatter
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -72,8 +62,8 @@ extend-select = [
 line-ending = "lf"
 
 [tool.mypy]
+strict = true
 explicit_package_bases = true
-disallow_untyped_defs = true
 exclude = "tests/.*"
 install_types = true
 non_interactive = true

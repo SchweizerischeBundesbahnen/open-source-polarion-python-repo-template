@@ -3,7 +3,7 @@
 
 ## Code Ownership and Automated Release Management
 
-Releases within our project are exclusively overseen by designated code owners, as outlined in the [/ .github / CODEOWNERS](/.github/CODEOWNERS) file. Our release process is automated using the Release Please GitHub action, which is configured in [/ .github / workflows / poetry-build.yml](/.github/workflows/poetry-build.yml).
+Releases within our project are exclusively overseen by designated code owners, as outlined in the [/ .github / CODEOWNERS](/.github/CODEOWNERS) file. Our release process is automated using the Release Please GitHub action, which is configured in [/ .github / workflows / ci.yml](/.github/workflows/ci.yml).
 
 ## Overview of the Workflow:
 
