@@ -48,7 +48,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: |
-            -Dsonar.branch.name=${{ github.head_ref }}
+            -Dsonar.branch.name=${{ github.ref_name }}
   release-please:
     if: github.event_name != 'pull_request' && github.ref_name == 'main'
     uses: SchweizerischeBundesbahnen/github-workflows-polarion/.github/workflows/reusable-release-please.yml@main
