@@ -28,7 +28,7 @@ jobs:
         with:
           enable-cache: true
       - name: 🧱 Install dependencies
-        run: uv sync --all-groups --locked
+        run: uv sync --all-groups --frozen
       - name: 🧪 Run tests
         run: uv run tox
       - name: SonarCloud scan for PR
@@ -57,7 +57,6 @@ jobs:
       pull-requests: write
     with:
       release-type: python
-      include-v-in-tag: false
   build-and-publish:
     needs: [verify-with-tox, release-please]
     runs-on: ubuntu-latest
@@ -80,14 +79,14 @@ jobs:
         with:
           enable-cache: true
       - name: 🧱 Install dependencies
-        run: uv sync --locked
+        run: uv sync --frozen
       - name: 📦 Build the package
         run: uv build
       - name: 📦 Publish artifacts to GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_VERSION: ${{ needs.release-please.outputs.version }}
-        run: gh release upload "${RELEASE_VERSION}" dist/*.{tar.gz,whl}
+          RELEASE_TAG: ${{ needs.release-please.outputs.tag_name }}
+        run: gh release upload "${RELEASE_TAG}" dist/*.{tar.gz,whl}
 #      - name: 📦 Publish artifacts to PyPI/TestPyPI
 #        env:
 #          name: testpypi
