@@ -20,7 +20,7 @@ Repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion
 [dependency-groups]
 dev = [
     "pre-commit==4.6.0",
-    "ruff==0.15.11",
+    "ruff==0.15.12",
     "mypy==1.20.2",
 ]
 
