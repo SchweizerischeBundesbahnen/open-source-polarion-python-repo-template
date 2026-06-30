@@ -20,11 +20,11 @@ jobs:
           persist-credentials: false
           fetch-depth: 0  # Full history required for SonarCloud analysis
       - name: Set up Python from .tool-versions
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
         with:
           python-version-file: .tool-versions
       - name: 🧱 Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39  # v8.2.0
         with:
           enable-cache: true
       - name: 🧱 Install dependencies
@@ -32,7 +32,7 @@ jobs:
       - name: 🧪 Run tests
         run: uv run tox
       - name: SonarCloud scan for PR
-        uses: sonarsource/sonarqube-scan-action@59db25f34e16620e48ab4bb9e4a5dce155cb5432  # v8
+        uses: sonarsource/sonarqube-scan-action@713881670b6b3676cda39549040e2d88c70d582e  # v8
         if: github.event_name == 'pull_request' && github.event.repository.visibility == 'public'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
@@ -41,7 +41,7 @@ jobs:
           args: |
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
       - name: SonarCloud scan for Push
-        uses: sonarsource/sonarqube-scan-action@59db25f34e16620e48ab4bb9e4a5dce155cb5432  # v8
+        uses: sonarsource/sonarqube-scan-action@713881670b6b3676cda39549040e2d88c70d582e  # v8
         if: github.event_name == 'push' && github.event.repository.visibility == 'public'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
@@ -71,11 +71,11 @@ jobs:
           fetch-depth: 1
           persist-credentials: false
       - name: Set up Python from .tool-versions
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
         with:
           python-version-file: .tool-versions
       - name: 🧱 Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39  # v8.2.0
         with:
           enable-cache: true
       - name: 🧱 Install dependencies
