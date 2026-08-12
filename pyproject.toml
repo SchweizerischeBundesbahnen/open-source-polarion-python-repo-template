@@ -56,12 +56,11 @@ show-fixes = true
 select = ["ALL"]
 preview = false
 ignore = [
-    # ruff format owns this formatting decision
+    # ruff format owns this formatting decision. COM812 is the only rule ruff
+    # itself reports as conflicting; the Q00x rules were measured across all
+    # eight repositories and silence nothing, so quote-style below carries that
+    # decision instead of an ignore.
     "COM812",  # trailing comma
-    "Q000",    # inline string quotes
-    "Q001",    # multiline string quotes
-    "Q002",    # docstring quotes
-    "Q003",    # escaped quotes
 
     # Not our convention
     "D",       # docstrings are optional, we mandate no docstring style
@@ -119,6 +118,9 @@ max-args = 10
 
 [tool.ruff.format]
 line-ending = "lf"
+# Pinned rather than left to the default: it is what makes the Q00x lint rules
+# redundant, so the decision has to be stated where the formatter reads it.
+quote-style = "double"
 
 [tool.mypy]
 strict = true
