@@ -61,8 +61,10 @@ ignore = [
     # are deliberately absent rather than ignored: Q000, Q002 and Q003 fire
     # nowhere across the eight repositories, and Q001 fires in one of them but is
     # auto-fixable and ruff format runs before ruff check in both tox.ini and
-    # pre-commit, so the formatter resolves it. The quote decision itself is
-    # pinned at the bottom of this file, on both the format and the lint side.
+    # pre-commit, so the formatter resolves it. That ordering is load-bearing:
+    # reverse it — the upstream ruff-pre-commit example puts check first — and
+    # these entries have to come back. The quote decision itself is pinned at the
+    # bottom of this file, on both the format and the lint side.
     "COM812",  # trailing comma
 
     # Not our convention
