@@ -64,16 +64,6 @@ repos:
         pass_filenames: false  # Don't pass individual files, use the specified path
   - repo: local
     hooks:
-      # Custom code style linter (PSP001-PSP005)
-      - id: python-sbb-polarion-linter
-        name: python-sbb-polarion code style linter
-        entry: uv run python -m python_sbb_polarion.linter
-        language: system
-        types: [python]
-        pass_filenames: false
-        files: ^python_sbb_polarion/
-  - repo: local
-    hooks:
       - id: uv-lock
         name: uv-lock
         entry: uv lock --check
