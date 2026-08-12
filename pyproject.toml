@@ -127,6 +127,9 @@ max-args = 10
 inline-quotes = "double"
 multiline-quotes = "double"
 docstring-quotes = "double"
+# The fourth option, and the one that decides whether Q003 runs at all: set it to
+# false and the rule stops reporting with nothing red to show for it.
+avoid-escape = true
 
 [tool.ruff.format]
 line-ending = "lf"
