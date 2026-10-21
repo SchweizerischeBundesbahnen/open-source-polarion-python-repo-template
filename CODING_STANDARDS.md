@@ -50,7 +50,7 @@ This project uses the following tools to enforce coding standards:
 
 1. [Ruff](https://docs.astral.sh/ruff/) - Fast Python linter and formatter that replaces flake8, pylint, isort, pyupgrade, and black. Configured with `ALL` rules enabled and intentional ignores (see `pyproject.toml`).
 
-2. [mypy](http://mypy-lang.org/) - Static type checker for Python. Strict mode is enabled — all code must have complete type annotations.
+2. [ty](https://docs.astral.sh/ty/) - Astral static type checker for Python. Complete type annotations are required and enforced by the ruff `ANN` rules.
 
 
 ## Docker Best Practices and Guidelines
