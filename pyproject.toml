@@ -21,7 +21,7 @@ Repository = "https://github.com/SchweizerischeBundesbahnen/open-source-polarion
 dev = [
     "pre-commit==4.7.0",
     "ruff==0.17.1",
-    "mypy==2.4.0",
+    "ty==0.0.89",
 ]
 
 test = [
@@ -143,12 +143,14 @@ line-ending = "lf"
 # The format half. Changing this means changing flake8-quotes above in step.
 quote-style = "double"
 
-[tool.mypy]
-strict = true
-explicit_package_bases = true
-exclude = "tests/.*"
-install_types = true
-non_interactive = true
+[tool.ty.src]
+exclude = ["tests/"]
+
+[tool.ty.terminal]
+# Fail on warning-level diagnostics too, as mypy did, so the gate does not depend on the ty default.
+error-on-warning = true
+
+# ty has no strict mode or disallow_untyped_defs equivalent: missing annotations are enforced by ruff's ANN rules (select = ["ALL"]).
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
