@@ -27,7 +27,7 @@ dev = [
 test = [
     "tox==4.67.3",
     "tox-uv==1.37.2",
-    "pytest==9.1.1",
+    "pytest==9.2.0",
     "coverage==7.17.0",
 ]
 
