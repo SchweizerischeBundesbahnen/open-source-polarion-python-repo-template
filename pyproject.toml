@@ -28,7 +28,7 @@ test = [
     "tox==4.67.15",
     "tox-uv==1.37.9",
     "pytest==9.2.0",
-    "coverage==7.17.4",
+    "coverage==7.17.5",
 ]
 
 [tool.uv]
